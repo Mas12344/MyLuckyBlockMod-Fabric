@@ -9,11 +9,11 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-
+import com.Mas12344.main.blocks.LuckyBlock;
 
 public class LuckyBlockMod implements ModInitializer{
 
-    public static final Block Lucky_Block = new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(1.0f));
+    public static final LuckyBlock Lucky_Block = new LuckyBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(1.0f));
 
     @Override
     public void onInitialize(){
