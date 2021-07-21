@@ -1,10 +1,15 @@
 package com.Mas12344.main;
 
+import com.Mas12344.main.enchantments.OmnivampEnchant;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.block.Material;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
@@ -14,6 +19,12 @@ import com.Mas12344.main.blocks.LuckyBlock;
 public class LuckyBlockMod implements ModInitializer{
 
     public static final LuckyBlock Lucky_Block = new LuckyBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(1.0f));
+    private static Enchantment Omnivamp = Registry.register(
+            Registry.ENCHANTMENT,
+            new Identifier("lb_mod", "omnivamp"),
+            new OmnivampEnchant()
+    );
+
 
     @Override
     public void onInitialize(){
