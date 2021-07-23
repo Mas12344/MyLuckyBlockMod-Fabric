@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "lb_mod",
   "version": "${version}",
 
   "name": "Lucky Block Mod",
   "description": "One block - different outcomes",
   "authors": [
-    "Mas12344"
+    "Mas12344",
+    "Antos",
+    "MikiTiki420"
   ],
   "contact": {
     "homepage": "",
@@ -14,16 +16,19 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/lb_mod/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
       "com.Mas12344.main.LuckyBlockMod"
+    ],
+    "client": [
+      "com.Mas12344.main.LuckyBlockModClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "lb_mod.mixins.json"
   ],
 
   "depends": {
