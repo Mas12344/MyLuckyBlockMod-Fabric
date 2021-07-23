@@ -1,0 +1,6 @@
+{
+	"type": "minecraft:smithing",
+	"base": {"item": "minecraft:netherite_leggings"},
+	"addition": {"item": "lb_mod:red_rune"},
+	"result": {"item": "lb_mod:red_infused_netherite_leggings"}
+}
