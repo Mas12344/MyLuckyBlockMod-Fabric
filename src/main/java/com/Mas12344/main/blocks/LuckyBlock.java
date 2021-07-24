@@ -15,7 +15,7 @@ public class LuckyBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        world.addBlockBreakParticles(pos, state);
+        super.onBreak(world, pos, state, player);
         if(!world.isClient)
         player.sendMessage(new LiteralText("TEST"), false);
 

@@ -8,9 +8,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class InfusedNetherite implements ArmorMaterial {
-    private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
-    private static final int[] PROTECTION_VALUES = new int[] {3, 6, 8, 3};
+public abstract class InfusedNetherite implements ArmorMaterial {
+    protected static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
+    protected static final int[] PROTECTION_VALUES = new int[] {3, 6, 8, 3};
 
     @Override
     public int getDurability(EquipmentSlot slot) {
@@ -35,11 +35,6 @@ public class InfusedNetherite implements ArmorMaterial {
     @Override
     public Ingredient getRepairIngredient() {
         return Ingredient.ofItems(Registry.ITEM.get(new Identifier("minecraft", "netherite_ingot")));
-    }
-
-    @Override
-    public String getName() {
-        return "red_infused_netherite";
     }
 
     @Override
