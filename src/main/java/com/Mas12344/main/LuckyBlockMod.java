@@ -43,8 +43,9 @@ public class LuckyBlockMod implements ModInitializer{
                 new Identifier("lb_mod", "red_rune"),
                 Red_Rune_Item
         );
-        /*
+
         RegisterItems.register();
+        /*
         ServerTickEvents.END_WORLD_TICK.register((world -> {
             for(PlayerEntity player: world.getPlayers()){
                 for(ItemStack armorPiece: player.getArmorItems()){
