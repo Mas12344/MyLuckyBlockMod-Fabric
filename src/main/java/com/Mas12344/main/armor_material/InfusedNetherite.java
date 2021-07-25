@@ -44,6 +44,6 @@ public abstract class InfusedNetherite implements ArmorMaterial {
 
     @Override
     public float getKnockbackResistance() {
-        return 0.4F;
+        return 0.1F;
     }
 }
