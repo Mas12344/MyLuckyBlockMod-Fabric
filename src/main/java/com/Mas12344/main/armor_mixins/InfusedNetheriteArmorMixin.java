@@ -1,6 +1,7 @@
 package com.Mas12344.main.armor_mixins;
 
 import com.Mas12344.main.RegisterItems;
+import com.Mas12344.main.armor_material.InfusedNetherite;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.EquipmentSlot;
@@ -20,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.UUID;
 
 @Mixin (ArmorItem.class)
-public abstract class  RedInfusedNetheriteArmorMixin {
+public abstract class  InfusedNetheriteArmorMixin {
     @Shadow @Final private static UUID[] MODIFIERS;
     @Shadow @Final @Mutable private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
@@ -29,6 +30,23 @@ public abstract class  RedInfusedNetheriteArmorMixin {
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void constructor(ArmorMaterial material, EquipmentSlot slot, Item.Settings settings, CallbackInfo ci){
         UUID uUID = MODIFIERS[slot.getEntitySlotId()];
+        if(InfusedNetherite.class.isAssignableFrom(material.getClass())){
+            ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
+
+            this.attributeModifiers.forEach(builder::put);
+
+            builder.put(
+                    EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,
+                    new EntityAttributeModifier(
+                            uUID,
+                            "Armor knockback resistance",
+                            this.knockbackResistance,
+                            EntityAttributeModifier.Operation.ADDITION
+                    )
+            );
+
+            this.attributeModifiers = builder.build();
+        }
 
         if(material == RegisterItems.RED_INFUSED_NETHERITE_MATERIAL){
             ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
@@ -41,19 +59,44 @@ public abstract class  RedInfusedNetheriteArmorMixin {
                             uUID,
                             "Max Health",
                             5.0F,
-                            EntityAttributeModifier.Operation.ADDITION)
-            );
-
-            builder.put(
-                    EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,
-                    new EntityAttributeModifier(
-                            uUID,
-                            "Armor knockback resistance",
-                            this.knockbackResistance,
                             EntityAttributeModifier.Operation.ADDITION
                     )
             );
 
+            this.attributeModifiers = builder.build();
+        }
+
+        if(material == RegisterItems.BLACK_INFUSED_NETHERITE_MATERIAL){
+            ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
+
+            this.attributeModifiers.forEach(builder::put);
+
+            builder.put(
+                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                    new EntityAttributeModifier(
+                            uUID,
+                            "Movement Speed",
+                            2.0F,
+                            EntityAttributeModifier.Operation.ADDITION
+                    )
+            );
+            this.attributeModifiers = builder.build();
+        }
+
+        if(material == RegisterItems.PURPLE_INFUSED_NETHERITE_MATERIAL){
+            ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
+
+            this.attributeModifiers.forEach(builder::put);
+
+            builder.put(
+                    EntityAttributes.GENERIC_ATTACK_SPEED,
+                    new EntityAttributeModifier(
+                            uUID,
+                            "Attack Speed",
+                            1.1F,
+                            EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    )
+            );
             this.attributeModifiers = builder.build();
         }
     }
