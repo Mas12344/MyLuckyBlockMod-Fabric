@@ -75,7 +75,7 @@ public abstract class  InfusedNetheriteArmorMixin {
                     EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     new EntityAttributeModifier(
                             uUID,
-                            "Movement Speed",
+                            "Attack Damage",
                             2.0F,
                             EntityAttributeModifier.Operation.ADDITION
                     )
@@ -93,7 +93,24 @@ public abstract class  InfusedNetheriteArmorMixin {
                     new EntityAttributeModifier(
                             uUID,
                             "Attack Speed",
-                            1.1F,
+                            0.5F,
+                            EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    )
+            );
+            this.attributeModifiers = builder.build();
+        }
+
+        if(material == RegisterItems.BLUE_INFUSED_NETHERITE_MATERIAL){
+            ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
+
+            this.attributeModifiers.forEach(builder::put);
+
+            builder.put(
+                    EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                    new EntityAttributeModifier(
+                            uUID,
+                            "Movement Speed",
+                            0.5F,
                             EntityAttributeModifier.Operation.MULTIPLY_TOTAL
                     )
             );

@@ -1,5 +1,6 @@
 package com.Mas12344.main.blocks;
 
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
@@ -34,10 +35,17 @@ public class LuckyBlock extends Block {
     }
 
     private void randomDrop(int seed, World world, BlockPos pos, BlockState state, PlayerEntity player){
-        switch (seed % 2) {
-            case 0 -> EntityType.CAT.spawn((ServerWorld) world, new NbtCompound(), new LiteralText("Opus"), player, pos, SpawnReason.MOB_SUMMONED, true, false);
-           // case 1 ->
-            default -> world.createExplosion(player, pos.getX(), pos.getY(), pos.getZ(), 5F, Explosion.DestructionType.BREAK);
+        switch (seed % 3) {
+            case 0:
+                EntityType.CAT.spawn((ServerWorld) world, new NbtCompound(), new LiteralText("Opus"), player, pos, SpawnReason.MOB_SUMMONED, true, false);
+                break;
+            case 1:
+                EntityType.SHEEP.spawn((ServerWorld) world, new NbtCompound(), new LiteralText("jeb_"), player, pos, SpawnReason.MOB_SUMMONED, true, false);
+                break;
+            default:
+                world.createExplosion(player, pos.getX(), pos.getY(), pos.getZ(), 5F, Explosion.DestructionType.BREAK);
+                break;
         }
     }
+
 }
