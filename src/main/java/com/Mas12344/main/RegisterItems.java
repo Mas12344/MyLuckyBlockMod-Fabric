@@ -1,11 +1,13 @@
 package com.Mas12344.main;
 
 import com.Mas12344.main.armor_material.*;
+import com.Mas12344.main.blocks.LuckyBlock;
+import com.Mas12344.main.items.Rune;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Material;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -59,6 +61,19 @@ public class RegisterItems {
     public static final Item WHITE_INFUSED_NETHERITE_LEGGINGS = new ArmorItem(WHITE_INFUSED_NETHERITE_MATERIAL, EquipmentSlot.LEGS, new Item.Settings().group(ItemGroup.COMBAT));
     public static final Item WHITE_INFUSED_NETHERITE_BOOTS = new ArmorItem(WHITE_INFUSED_NETHERITE_MATERIAL, EquipmentSlot.FEET, new Item.Settings().group(ItemGroup.COMBAT));
 
+    //Runes
+    public static final Rune Red_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+    public static final Rune Green_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+    public static final Rune Black_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+    public static final Rune Blue_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+    public static final Rune Orange_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+    public static final Rune Purple_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+    public static final Rune White_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+    public static final Rune Yellow_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
+
+    //Lucky Block
+    public static final LuckyBlock Lucky_Block = new LuckyBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(0.25f));
+
     public static void register(){
         //Red rune variant
         Registry.register(Registry.ITEM, new Identifier("lb_mod", "red_infused_netherite_helmet"), RED_INFUSED_NETHERITE_HELMET);
@@ -100,5 +115,50 @@ public class RegisterItems {
         Registry.register(Registry.ITEM, new Identifier("lb_mod", "white_infused_netherite_chestplate"), WHITE_INFUSED_NETHERITE_CHESTPLATE);
         Registry.register(Registry.ITEM, new Identifier("lb_mod", "white_infused_netherite_leggings"), WHITE_INFUSED_NETHERITE_LEGGINGS);
         Registry.register(Registry.ITEM, new Identifier("lb_mod", "white_infused_netherite_boots"), WHITE_INFUSED_NETHERITE_BOOTS);
+
+
+        //Runes
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "lucky_block"),
+                new BlockItem(Lucky_Block, new FabricItemSettings().group(ItemGroup.MISC))
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "red_rune"),
+                Red_Rune_Item
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "green_rune"),
+                Green_Rune_Item
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "black_rune"),
+                Black_Rune_Item
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "blue_rune"),
+                Blue_Rune_Item
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "orange_rune"),
+                Orange_Rune_Item
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "purple_rune"),
+                Purple_Rune_Item
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "white_rune"),
+                White_Rune_Item
+        );
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "yellow_rune"),
+                Yellow_Rune_Item
+        );
+
+        //Lucky block
+        Registry.register(Registry.BLOCK,
+                new Identifier("lb_mod", "lucky_block"),
+                Lucky_Block
+        );
     }
 }

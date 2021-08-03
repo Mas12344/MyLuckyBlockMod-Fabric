@@ -1,1 +1,1 @@
-{"type": "minecraft:smithing","base": {"item": "minecraft:netherite_black"},"addition": {"item": "lb_mod:black_rune"},"result": {"item": "lb_mod:black_infused_netherite_leggings}}
+{"type": "minecraft:smithing","base": {"item": "minecraft:netherite_leggings"},"addition": {"item": "lb_mod:black_rune"},"result": {"item": "lb_mod:black_infused_netherite_leggings"}}

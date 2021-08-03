@@ -1,1 +1,1 @@
-{"type": "minecraft:smithing","base": {"item": "minecraft:netherite_purple"},"addition": {"item": "lb_mod:purple_rune"},"result": {"item": "lb_mod:purple_infused_netherite_chestplate}}
+{"type": "minecraft:smithing","base": {"item": "minecraft:netherite_chestplate"},"addition": {"item": "lb_mod:purple_rune"},"result": {"item": "lb_mod:purple_infused_netherite_chestplate"}}

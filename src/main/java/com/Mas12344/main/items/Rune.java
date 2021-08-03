@@ -2,9 +2,9 @@ package com.Mas12344.main.items;
 
 import net.minecraft.item.Item;
 
-public class RedRune extends Item {
+public class Rune extends Item {
 
-    public RedRune(Settings settings) {
+    public Rune(Settings settings) {
         super(settings);
     }
 
