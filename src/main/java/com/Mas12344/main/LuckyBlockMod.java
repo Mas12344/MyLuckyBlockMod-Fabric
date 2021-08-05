@@ -4,15 +4,13 @@ import com.Mas12344.main.enchantments.OmnivampEnchant;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.event.GameEvent;
 
 
 public class LuckyBlockMod implements ModInitializer{
@@ -42,11 +40,17 @@ public class LuckyBlockMod implements ModInitializer{
                         }
                     }
                 }
-                if(counter==4){
-                    world.emitGameEvent(GameEvent.EXPLODE, player.getBlockPos());
-                    //może za bardzo laguje?
-                    //Dobrze nalicza,ale efektu nie ma
-                    //player.addStatusEffect(new StatusEffectInstance(StatusEffect.byRawId(28)), player);
+
+                if(counter > 0){
+                    player.addStatusEffect(
+                            new StatusEffectInstance(
+                                    StatusEffects.HASTE,
+                                    5,
+                                    counter-1,
+                                    true,
+                                    false
+                            )
+                    );
                 }
 
             }

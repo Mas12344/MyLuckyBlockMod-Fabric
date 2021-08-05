@@ -110,7 +110,7 @@ public abstract class  InfusedNetheriteArmorMixin {
                     new EntityAttributeModifier(
                             uUID,
                             "Movement Speed",
-                            0.5F,
+                            0.25F,
                             EntityAttributeModifier.Operation.MULTIPLY_TOTAL
                     )
             );
