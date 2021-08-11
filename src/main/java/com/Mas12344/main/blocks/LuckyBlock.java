@@ -2,9 +2,7 @@ package com.Mas12344.main.blocks;
 
 
 import com.Mas12344.main.RegisterItems;
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
@@ -14,8 +12,6 @@ import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtInt;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.math.BlockPos;
@@ -34,6 +30,7 @@ public class LuckyBlock extends Block {
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBreak(world, pos, state, player);
+
         if(!world.isClient){
             Random r = new Random();
             int los = r.nextInt(99);
@@ -58,6 +55,11 @@ public class LuckyBlock extends Block {
                 ItemStack rune_stack = randomRuneItem(seed);
                 ItemEntity rune_entity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), rune_stack);
                 world.spawnEntity(rune_entity);
+            }
+            case 3 -> {
+                for(int i = 0; i <= pos.getY(); i++){
+                    world.breakBlock(pos.add(0, -i, 0), false);
+                }
             }
             default -> world.createExplosion(player, pos.getX(), pos.getY(), pos.getZ(), 5F, Explosion.DestructionType.BREAK);
         }
