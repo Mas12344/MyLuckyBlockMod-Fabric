@@ -2,12 +2,16 @@ package com.Mas12344.main;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Boxes;
+
 
 public class RegisterEventListeners {
    public static void register(){
@@ -40,12 +44,5 @@ public class RegisterEventListeners {
 
         });
 
-       PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, entity)->
-       {
-           for(NbtElement element: player.getMainHandStack().getEnchantments()){
-               if(element.asString() == '{id:"lb_mod:telekinesis",lvl:1s}');
-
-           }
-       });
     }
 }

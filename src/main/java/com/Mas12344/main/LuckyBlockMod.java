@@ -2,7 +2,6 @@ package com.Mas12344.main;
 
 import com.Mas12344.main.enchantments.OmnivampEnchant;
 import com.Mas12344.main.enchantments.PullingEnchant;
-import com.Mas12344.main.enchantments.TelekinesisEnchant;
 import com.Mas12344.main.entities.test_shoulder_entity.TestShoulderEntity;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -30,11 +29,6 @@ public class LuckyBlockMod implements ModInitializer{
             new PullingEnchant()
     );
 
-    private static final Enchantment TelekinesisEnchant = Registry.register(
-            Registry.ENCHANTMENT,
-            new Identifier("lb_mod", "telekinesis"),
-            new TelekinesisEnchant()
-    );
 
     public static final EntityType<TestShoulderEntity> TEST_SHOULDER_ENTITY = Registry.register(
             Registry.ENTITY_TYPE,
