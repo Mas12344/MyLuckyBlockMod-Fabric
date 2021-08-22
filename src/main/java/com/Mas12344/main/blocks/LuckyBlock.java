@@ -61,6 +61,27 @@ public class LuckyBlock extends Block {
                     world.breakBlock(pos.add(0, -i, 0), false);
                 }
             }
+            case 4 ->{
+                //część wyposażenia z netherytu, z losowym enchantem
+            }
+            case 5 ->{
+                //papuga co cały czas creepera robi
+            }
+            case 6 ->{
+                //jabko co daje wszystkie mozliwe efekty
+            }
+            case 7 ->{
+                //deszcz potionow
+            }
+            case 8 ->{
+                // wandering trader z fajnymi rzeczami
+            }
+            case 9 ->{
+                player.setHealth(1);
+            }
+            case 10 ->{
+                // wither z losowa iloscia hp
+            }
             default -> world.createExplosion(player, pos.getX(), pos.getY(), pos.getZ(), 5F, Explosion.DestructionType.BREAK);
         }
     }
