@@ -7,9 +7,12 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.item.FoodComponent;
 
 public class RegisterItems {
     //Red rune variant
@@ -71,9 +74,25 @@ public class RegisterItems {
     public static final Rune White_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
     public static final Rune Yellow_Rune_Item = new Rune(new FabricItemSettings().group(ItemGroup.MISC).maxCount(16));
 
+    //Apple?
+
+    public static final Item UGApple = new EnchantedGoldenAppleItem(appleSettings());
+
     //Lucky Block
     public static final LuckyBlock Lucky_Block = new LuckyBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC).strength(0.25f));
 
+    private static FabricItemSettings appleSettings(){
+        FabricItemSettings applesettings = new FabricItemSettings();
+        FoodComponent.Builder foodcomponentbuilder = new FoodComponent.Builder();
+        foodcomponentbuilder.alwaysEdible();
+        foodcomponentbuilder.hunger(4);
+        for(int i = 1; i <=32; i++){
+            foodcomponentbuilder.statusEffect(new StatusEffectInstance(StatusEffect.byRawId(i), 30, 1), 1f);
+        }
+
+        applesettings.food(foodcomponentbuilder.build());
+        return applesettings;
+    }
     public static void register(){
         //Red rune variant
         Registry.register(Registry.ITEM, new Identifier("lb_mod", "red_infused_netherite_helmet"), RED_INFUSED_NETHERITE_HELMET);
@@ -159,6 +178,12 @@ public class RegisterItems {
         Registry.register(Registry.BLOCK,
                 new Identifier("lb_mod", "lucky_block"),
                 Lucky_Block
+        );
+
+        //Apple?
+        Registry.register(Registry.ITEM,
+                new Identifier("lb_mod", "ugapple"),
+                UGApple
         );
     }
 }
