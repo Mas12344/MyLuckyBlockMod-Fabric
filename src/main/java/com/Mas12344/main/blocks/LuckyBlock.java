@@ -3,7 +3,6 @@ package com.Mas12344.main.blocks;
 
 import com.Mas12344.main.RegisterItems;
 import com.google.common.collect.ImmutableList;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
@@ -11,17 +10,14 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.passive.CatEntity;
-import net.minecraft.entity.passive.WanderingTraderEntity;
+import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.EnchantedGoldenAppleItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.village.TradeOffer;
-import net.minecraft.village.TradeOfferList;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 
@@ -48,7 +44,7 @@ public class LuckyBlock extends Block {
     }
 
     private void randomDrop(int seed, World world, BlockPos pos, BlockState state, PlayerEntity player){
-        switch (8) {
+        switch (seed % 20) {
             case 0 -> {
                 CatEntity opus = new CatEntity(EntityType.CAT, world);
                 opus.setCatType(10);
@@ -73,6 +69,8 @@ public class LuckyBlock extends Block {
             }
             case 5 ->{
                 //papuga co cały czas creepera robi
+                ParrotEntity papuga = new ParrotEntity(EntityType.PARROT, world);
+                papuga.playSound(SoundEvents.ENTITY_PARROT_IMITATE_CREEPER, 1, 1);
             }
             case 6 ->{
                 //jabko co daje wszystkie mozliwe efekty
@@ -89,19 +87,6 @@ public class LuckyBlock extends Block {
             case 8 ->{
                 // wandering trader z fajnymi rzeczami
 
-                WanderingTraderEntity wte = new WanderingTraderEntity(EntityType.WANDERING_TRADER, world);
-                //TradeOfferList tol = new TradeOfferList();
-                ItemStack emerald = new ItemStack(Items.EMERALD);
-                ItemStack rune = randomRuneItem(seed);
-                TradeOffer to = new TradeOffer(emerald, rune, 99999, 10, 5);
-                //tol.add(to);
-
-
-                //wte.setOffersFromServer(wte.getOffers().set(0, to));
-                //wte.writeCustomDataToNbt(tol.toNbt());
-                wte.setPosition(pos.getX(), pos.getY(), pos.getZ());
-                world.spawnEntity(wte);
-
             }
             case 9 ->{
                 player.setHealth(1);
@@ -113,7 +98,7 @@ public class LuckyBlock extends Block {
                 wither.setPosition(pos.getX(), pos.getY(), pos.getZ());
                 world.spawnEntity(wither);
             }
-            default -> world.createExplosion(player, pos.getX(), pos.getY(), pos.getZ(), 5F, Explosion.DestructionType.BREAK);
+            default -> player.sendMessage(new LiteralText("NIC"), false); //world.createExplosion(player, pos.getX(), pos.getY(), pos.getZ(), 5F, Explosion.DestructionType.BREAK);
         }
     }
 
